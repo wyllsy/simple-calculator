@@ -1,0 +1,192 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <windows.h>
+//函数原型
+void easycalcu();
+void constplus();
+void factor();
+void power_s();
+void show();
+void intro();
+
+//字符串常量
+char * strs[5]={"简单加减乘除","累加","阶乘","幂次运算"};
+
+//全局变量
+int choice;
+
+
+//main function
+int main()
+{
+
+
+    char reply;
+    printf("Welcome!\n");
+    printf("简单计算器 [版本 1.02]\n");
+
+
+
+    show();
+
+    while(1)
+    {
+
+        if(1<=choice&&choice<=4)
+            {
+                system("cls");
+                printf("当前模式: %s\n",strs[choice-1]);
+            }
+        else if(!choice)
+            {
+                printf("Good bye!");
+                break;
+            }
+        switch(choice)
+            {
+                case 1:easycalcu();break;
+                case 2:constplus();break;
+                case 3:factor();break;
+                case 4:power_s();break;
+                case 5:intro();break;
+                default:printf("please enter an integer between 0 and 4!\n");
+                        show();
+            }
+      printf("按q返回上一级，按c继续当前模式\n");
+
+      if(choice>=1&&choice<=5)
+        {
+            scanf("%c",&reply);
+            if(reply=='q')
+              {
+                system("cls");
+                show();
+              }
+            else if(reply=='c')
+                ;
+        }
+
+    }
+
+
+
+
+}
+//显示函数
+void show()
+    {
+
+                printf("请选择计算模式.\n");
+                printf("************************************\n");
+                printf("*1.简单加减乘除          2.累加    *\n" );
+                printf("*3.阶乘                  4.幂次运算*\n");
+                printf("*5.使用说明              0.退出    *\n");
+                printf("************************************\n");
+                scanf("%d",&choice);
+                while(getchar()!='\n')
+    	             continue;
+
+    }
+
+
+
+
+//简单加减乘除
+void easycalcu()
+{
+    char sign;
+    float left,right;
+
+    printf("请输入算式\n");
+
+
+    scanf("%f%c%f",&left,&sign,&right);
+    switch(sign)
+        {
+            case'+':printf("%.2f\n",left+right);break;
+            case'-':printf("%.2f\n",left-right);break;
+            case'*':printf("%.2f\n",left*right);break;
+            case'/':printf("%.2f\n",left/right);break;
+        }
+
+
+    while(getchar()!='\n')
+    	continue;
+}
+
+//累加
+void constplus()
+{
+    float in[100],sum=0;
+    int total=0;
+    int i=0;
+    char temp;
+    printf("请输入: ");
+
+    while(scanf("%f",&in[i++])==1)
+    {
+    	scanf("%c",&temp);
+    	if(temp=='\n')
+    		break;
+    }
+    total=i;
+    for(i=0;i<total;i++)
+        sum+=in[i];
+    printf("%.2f\n",sum);
+
+
+}
+
+
+//阶乘
+void factor()
+{
+	int num,i,result=1;
+	printf("请输入一个正整数:  ");
+    scanf("%d",&num);
+    if(num)
+        {
+            for(i=1;i<=num;i++)
+    	       result*=i;
+        }
+    printf("%d\n",result);
+    while(getchar()!='\n')
+    	continue;
+}
+//幂次运算
+void power_s()
+{
+	float a,b;
+	char sign;
+	printf("请输入算式：  ");
+	scanf("%f%c%f",&a,&sign,&b);
+	printf("%.2f\n",pow(a,b));
+	while(getchar()!='\n')
+    	continue;
+
+}
+
+void intro()
+{
+    printf("本计算器无法进行加减乘除混合运算只能进行简单计算,使用说明如下\n");
+    printf("简单加减乘除模式:\n");
+    printf("****************************\n");
+    printf("样例输入 3*5 样例输出 15.00\n");
+    printf("****************************\n");
+    printf("阶乘模式:\n");
+    printf("****************************\n");
+    printf("样例输入 4 样例输出 24.00\n");
+    printf("****************************\n");
+    printf("累加模式:\n");
+    printf("****************************\n");
+    printf("样例输入 4+8+9 样例输出 21.00\n");
+    printf("****************************\n");
+    printf("幂次运算模式:\n");
+    printf("****************************\n");
+    printf("样例输入 2^3 样例输出 8.00\n");
+    printf("****************************\n");
+
+
+
+}
